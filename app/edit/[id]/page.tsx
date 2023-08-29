@@ -4,7 +4,7 @@ import { BiSolidAddToQueue } from 'react-icons/bi'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 
-function page() {
+function Editpage() {
   const params=useParams();
   const router = useRouter()
   const {id}=params;
@@ -56,4 +56,4 @@ function page() {
   )
 }
 
-export default page
+export default Editpage;
