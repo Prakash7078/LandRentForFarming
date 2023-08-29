@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Problem Statement:
+Develop a Kanban board inspired by platforms like Trello for task management. The application
+should seamlessly allow users to manage tasks among different stages of completion.
 
-## Getting Started
+Front-end Requirements:
+1. Homepage: Display all tasks, segregated by their status groups: To Do, Doing, Done.
+2. Task Card: Showcase the task title and description.
+3. Add Task: Integrate a form to create a new task, prompting users for the title and
+description of the task.
+4. Edit Task: Provide an option to edit an existing task’s title and description.
+5. Delete Task: Implement a feature to remove a task permanently.
+6. Task Status: Empower users to effortlessly drag and drop tasks between the To Do,
+Doing, and Done categories.
+7. Responsive Design: Ensure the application is fully functional and visually coherent on
+mobile devices.
 
-First, run the development server:
+Back-end Requirements:
+1. Create an API with endpoints to support CRUD operations for tasks.
+2. Tasks should be stored in a database.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+In this Next.js and TypeScript project styled with Tailwind CSS, the home page displays tasks with options for editing, deleting, and status tracking. Task details are presented in an organized grid layout, while icons provide easy access to editing and deletion functionalities. A dynamic slider visually represents task completion, with a subtle underline added to completed tasks. This project showcases a user-friendly interface with clean code architecture, ensuring a seamless task management experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![Alt text](image.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We can add tasks by clicking addTask button with task details.
+![Alt text](image-1.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+We can edit tasks by clicking the edit icon at respective task. you can see the form with previous details like this.
+![Alt text](image-2.png)
 
-## Learn More
+Here we can mention the completion of task with progress bar it is dynamic you can simply track your status by dragging this, If we completed 100 % of task it shows in red colour.
+![Alt text](image-3.png)
 
-To learn more about Next.js, take a look at the following resources:
+It is fully responsive application, You can use this in your mobile and tablet devices also.
+![Alt text](image-4.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This is all about working and features of this application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Github link : https://github.com/Prakash7078/Todo-App/
 
-## Deploy on Vercel
+Live URL: https://p-todo.vercel.app/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+                
