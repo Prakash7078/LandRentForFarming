@@ -10,8 +10,15 @@ interface Task {
     status: number;
 }
 export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks: () => void }) {
+    const[complete,setComplete]=useState<string | null>(null);
     useEffect(() => {
         fetchTasks();
+        const completedTask = tasks.find(item => item.status === 100);
+        if (completedTask) {
+            setComplete(completedTask._id);
+        } else {
+            setComplete(null);
+        }
     }, []);
     const handleDelete=async(id:string)=>{
       try{
@@ -25,6 +32,11 @@ export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks
     const handleChange = async (e: ChangeEvent<HTMLInputElement>, id: string) => {
         const newStatus = parseInt(e.target.value, 10);
         console.log("id",id);
+        if (newStatus === 100) {
+            setComplete(id);
+        } else {
+            setComplete(null);
+        }
         try {
             await fetch(`/api/todos/${id}`, {
                 method: 'PUT',
@@ -44,8 +56,9 @@ export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks
     return (
         <div className='flex justify-center flex-col items-center mt-8 gap-5 mx-auto'>
             {tasks.map((item: Task) => {
+                const line = complete === item._id ? 'bg-red-400' : '';
                 return (
-                    <div key={item._id} className='flex gap-8 shadow-slate-500 shadow-inner p-3 flex-col sm:flex-row flex-wrap'>
+                    <div key={item._id} className={`flex gap-8 shadow-slate-500 shadow-inner p-3 flex-col sm:flex-row flex-wrap  ${line}`}>
                         <h1>{item.title}</h1>
                         <p>{item.description}</p>
                         <div className='flex gap-3'>
