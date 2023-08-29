@@ -20,7 +20,7 @@ export default function Home() {
     }
 }
   return (
-    <div className="w-full font-sans">
+    <div className="w-full font-sans text-lg">
       <Todoform fetchTasks={fetchTasks} />
       <Tasks tasks={tasks} fetchTasks={fetchTasks} />
     </div>

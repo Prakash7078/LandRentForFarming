@@ -50,7 +50,7 @@ export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks
         <div className='flex justify-center flex-col items-center mt-8 gap-5 mx-auto'>
             {tasks.map((item: Task) => {
                 return (
-                    <div key={item.id} className='flex gap-8 shadow-slate-500 shadow-inner p-3 flex-col sm:flex-row'>
+                    <div key={item.id} className='flex gap-8 shadow-slate-500 shadow-inner p-3 flex-col sm:flex-row flex-wrap'>
                         <h1>{item.title}</h1>
                         <p>{item.description}</p>
                         <div className='flex gap-3'>
