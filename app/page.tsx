@@ -3,7 +3,7 @@ import React, {useState } from 'react';
 import Tasks from "./components/Tasks";
 import Todoform from "./components/Todoform";
 interface Task {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   status: number;

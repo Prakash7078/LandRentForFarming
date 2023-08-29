@@ -20,9 +20,13 @@ function Editpage() {
       });    };
     fetchdata();
   },[]);
-  const handleChange=(e: ChangeEvent<HTMLInputElement>)=>{
-    setEditdata({...editdata,[e.target.name]:e.target.value});
-  }
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setEditdata(prevData => ({
+        ...prevData,
+        [name]: value,
+    }));
+};
   const handleEdit=async(e: React.MouseEvent<HTMLButtonElement>)=>{
     e.preventDefault();
     try {
