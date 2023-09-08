@@ -8,6 +8,11 @@ interface Task {
     title: string;
     description: string;
     status: number;
+    landType:string;
+    landSize:number;
+    irrigation:boolean;
+    price:number;
+    date:Date;
 }
 export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks: () => void }) {
     const[complete,setComplete]=useState<string | null>(null);
@@ -58,8 +63,14 @@ export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks
             {tasks.map((item: Task) => {
                 const line = complete === item._id ? 'bg-red-400' : '';
                 return (
-                    <div key={item._id} className={`flex gap-8 shadow-slate-500 shadow-inner p-3 flex-col sm:flex-row flex-wrap  ${line}`}>
+                    <div key={item._id} className={`flex gap-4 shadow-slate-500 shadow-inner p-3 flex-col  flex-wrap  ${line}`}>
                         <h1>{item.title}</h1>
+                        <p>{item.landSize} acres</p>
+                        <p>{item.landType} Land</p>
+                        <p>{item.price} /-</p>
+                        <p>{item.irrigation ? "Irrigation":"No Irrigation"}</p>
+                        <p>{item.date}</p>       
+                        <p>+91 {item.phone}</p>                 
                         <p>{item.description}</p>
                         <div className='flex gap-3'>
                             <Link href={`edit/${item._id}`}><AiTwotoneEdit size={23} className="cursor-pointer" color="blue" /></Link>
@@ -73,7 +84,7 @@ export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks
                             min="0"
                             max="100"
                         />
-                        <span>Status {item.status}</span>
+                        <span>Rating {item.status}</span>
                     </div>
                 );
             })}

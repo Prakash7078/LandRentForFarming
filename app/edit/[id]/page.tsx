@@ -8,7 +8,7 @@ function Editpage() {
   const params=useParams();
   const router = useRouter()
   const {id}=params;
-  const[editdata,setEditdata]=useState({title:"",description:""});
+  const[editdata,setEditdata]=useState({ title: "", description: "", status: 0, landType:"",landSize:0,irrigation:false,price:0,date: new Date(),phone:0});
   useEffect(()=>{
     const fetchdata=async()=>{
       const response=await fetch(`/api/todos/${id}`);
@@ -16,11 +16,17 @@ function Editpage() {
       setEditdata({
         ...editdata,
         "title": data.todo.title,
-        "description": data.todo.description
+        "description": data.todo.description,
+        "landType":data.todo.landType,
+        "landSize":data.todo.landSize,
+        "irrigation":data.todo.irrigation,
+        "phone":data.todo.phone,
+        "price":data.todo.price,
+        "date":data.todo.date,
       });    };
     fetchdata();
   },[]);
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setEditdata(prevData => ({
         ...prevData,
@@ -45,17 +51,99 @@ function Editpage() {
   }
   return (
     <div className='flex flex-col items-center mt-10 mx-auto'>
-            <form className="mt-5 shadow-inner bg-white sm:p-10 px-5 py-5 ">
-                <div className="flex gap-14">
-                    <label className="font-bold">Title</label>
-                    <input className=" border-2" type='text' placeholder='task title...' value={editdata.title} name="title" onChange={handleChange}/>
-                </div>
-                <div className="mt-5 flex gap-10">
-                    <label className=" font-bold">Description</label>
-                    <textarea rows={3} cols={20} placeholder='description...' className="border-2" value={editdata.description} name="description" onChange={handleChange}/>
-                </div>
-                <button className='bg-red-500 px-6 border-2 mt-5 font-semibold mx-auto w-full py-1' onClick={handleEdit}>Save</button>
-            </form>
+            <form className="mt-5 shadow-inner bg-white sm:p-10 px-5 py-5 flex flex-col gap-5" onSubmit={handleEdit}>
+                    <div className="flex gap-14">
+                        <label className="font-bold">Name</label>
+                        <input
+                            className="border-2"
+                            type='text'
+                            name='title'
+                            placeholder='task title...'
+                            onChange={handleChange}
+                            value={editdata.title}
+                        />
+                    </div>
+                    <div className="flex gap-14">
+                        <label className="font-bold">LandType</label>
+                        <select className='border-2 p-2' name='landType' onChange={handleChange} value={editdata.landType}>
+                            <option value="">Select Land Type</option>
+                            <option value="Agricultural">Agricultural</option>
+                            <option value="Residential">Residential</option>
+                            <option value="Commercial">Commercial</option>
+                        </select>
+                    </div>
+                    <div className="flex gap-14">
+                        <label className="font-bold">LandSize(acres)</label>
+                        <input
+                            className="border-2"
+                            type='number'
+                            name='landSize'
+                            placeholder='land size...'
+                            onChange={handleChange}
+                            value={editdata.landSize}
+                        />
+                    </div>
+                    <div className="flex gap-14">
+                        <label className="font-bold">Price</label>
+                        <input
+                            className="border-2"
+                            type='number'
+                            name='price'
+                            placeholder='price...'
+                            onChange={handleChange}
+                            value={editdata.price}
+                        />
+                    </div>
+                    <div className="flex gap-14">
+                        <label className="font-bold">Phone</label>
+                        <input
+                            className="border-2"
+                            type='number'
+                            name='phone'
+                            placeholder='mobile...'
+                            onChange={handleChange}
+                            value={editdata.phone}
+                        />
+                    </div>
+                    <div className="flex gap-14">
+                        <label className='font-bold'>Irrigation</label>
+                        <div>
+                            <input
+                                type='radio'
+                                className='border-2'
+                                name='irrigation'
+                                value='true'
+                                checked={editdata.irrigation === true} // Set checked if data.irrigation is true
+                                onChange={handleChange} // Handle change event to update data.irrigation
+                            />
+                            <label>Yes</label>
+                        </div>
+                        <div>
+                            <input
+                                type='radio'
+                                className='border-2'
+                                name='irrigation'
+                                value='false'
+                                checked={editdata.irrigation === false} // Set checked if data.irrigation is false
+                                onChange={handleChange} // Handle change event to update data.irrigation
+                            />
+                            <label>No</label>
+                        </div>
+                    </div>
+                    <div className="mt-5 flex gap-10">
+                        <label className="font-bold">Address</label>
+                        <textarea
+                            rows={3}
+                            cols={20}
+                            name='description'
+                            placeholder='address...'
+                            className="border-2"
+                            onChange={handleChange}
+                            value={editdata.description}
+                        />
+                    </div>
+                    <button className='bg-red-500 px-6 border-2 mt-5 font-semibold mx-auto w-full py-1' type='submit'>Update</button>
+                </form>
     </div>
   )
 }

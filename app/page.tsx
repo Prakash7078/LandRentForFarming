@@ -20,7 +20,7 @@ export default function Home() {
     }
 }
   return (
-    <div className="w-full font-sans text-lg">
+    <div className="w-full font-sans text-lg flex justify-start flex-col md:flex-row">
       <Todoform fetchTasks={fetchTasks} />
       <Tasks tasks={tasks} fetchTasks={fetchTasks} />
     </div>

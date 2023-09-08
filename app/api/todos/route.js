@@ -4,8 +4,8 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request){
     await connectDB();
-    const{title,description,status}=await request.json();
-    await Todo.create({title,description,status});
+    const{title,landType,landSize,irrigation,price,date,description,status,phone}=await request.json();
+    await Todo.create({title,landType,landSize,irrigation,price,date,description,status,phone});
     return new NextResponse(JSON.stringify({message:"created succesfully"}));
 };
 

@@ -5,8 +5,9 @@ import { NextResponse } from 'next/server';
 export async function PUT(request,{params}){
     const {id}=params;
     await connectDB();
-    const {title,description,status}=await request.json();
-    await Todo.findByIdAndUpdate(id,{title,description,status});
+    console.log(request);
+    const {title,landType,landSize,irrigation,price,date,description,status,phone}=await request.json();
+    await Todo.findByIdAndUpdate(id,{title,landType,landSize,irrigation,price,date,description,status,phone});
     return new NextResponse(JSON.stringify({message:"Topic updated succesfully"}));
 }
 export async function DELETE(request,{params}){
