@@ -7,6 +7,12 @@ interface Task {
   title: string;
   description: string;
   status: number;
+  landType:string;
+  landSize:number;
+  phone:number;
+  irrigation:boolean;
+  price:number;
+  date:Date;
 }
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);

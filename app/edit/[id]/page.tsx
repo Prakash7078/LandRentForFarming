@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'; // Import FormEvent here
 import { BiSolidAddToQueue } from 'react-icons/bi'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
@@ -33,7 +33,7 @@ function Editpage() {
         [name]: value,
     }));
 };
-  const handleEdit=async(e: React.MouseEvent<HTMLButtonElement>)=>{
+  const handleEdit=async(e: FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     try {
       console.log(editdata);
