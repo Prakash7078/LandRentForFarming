@@ -70,7 +70,7 @@ export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks
                         <p>{item.landType} Land</p>
                         <p>{item.price} /-</p>
                         <p>{item.irrigation ? "Irrigation":"No Irrigation"}</p>
-                        <p>{item.date.toLocaleDateString()}</p>                        
+                        <p>{item.date instanceof Date ? item.date.toLocaleDateString() : 'Invalid Date'}</p>
                         <p>+91 {item.phone}</p>                 
                         <p>{item.description}</p>
                         <div className='flex gap-3'>
