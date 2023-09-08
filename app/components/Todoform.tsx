@@ -1,22 +1,24 @@
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { BiSolidAddToQueue } from 'react-icons/bi';
-
+import {toast} from 'react-toastify';
 interface TaskData {
     title: string;
+    serve:number;
     description: string;
     status: number;
     landType:string;
     landSize:number;
     irrigation:boolean;
     price:number;
+    district:string,
     phone:number;
     date:Date;
 }
 
 function Todoform({ fetchTasks }: { fetchTasks: () => void }) {
     const [open, setOpen] = useState(false);
-    const [data, setData] = useState<TaskData>({ title: "", description: "", status: 0, landType:"",landSize:0,irrigation:false,price:0,date: new Date(),phone:0});
+    const [data, setData] = useState<TaskData>({ title: "", serve: 0,district:"",description: "", status: 0, landType:"",landSize:0,irrigation:false,price:0,date: new Date(),phone:0});
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement >) => {
         const { name, value } = e.target;
         setData((prevData) => ({
@@ -36,15 +38,17 @@ function Todoform({ fetchTasks }: { fetchTasks: () => void }) {
                 body: JSON.stringify(data),
             });
             setOpen(false);
+            setData({ title: "", serve: 0,district:"",description: "", status: 0, landType:"",landSize:0,irrigation:false,price:0,date: new Date(),phone:0});
             fetchTasks();
 
         } catch (error) {
+            toast.error("Must fill all details");
             console.error("Post error:", error);
         }
     }
 
     return (
-        <div className='flex flex-col items-center mt-10 mx-auto'>
+        <div className='flex flex-col items-center mt-10 mx-auto '>
             <div className='flex gap-3 justify-center bg-green-400 items-center px-10 py-3 border-2 border-black ' onClick={() => setOpen(true)}>
                 <button>Add Land</button>
                 <BiSolidAddToQueue />
@@ -63,12 +67,23 @@ function Todoform({ fetchTasks }: { fetchTasks: () => void }) {
                         />
                     </div>
                     <div className="grid grid-cols-2">
+                        <label className="font-bold">Survey No</label>
+                        <input
+                            className="border-2"
+                            type='text'
+                            name='serve'
+                            placeholder='Serve Number...'
+                            onChange={handleChange}
+                            value={data.serve}
+                        />
+                    </div>
+                    <div className="grid grid-cols-2">
                         <label className="font-bold">LandType</label>
                         <select className='border-2 p-2' name='landType' onChange={handleChange} value={data.landType}>
                             <option value="">Select Land Type</option>
-                            <option value="Agricultural">Agricultural</option>
-                            <option value="Residential">Residential</option>
-                            <option value="Commercial">Commercial</option>
+                            <option value="Black Soil">Black Soil</option>
+                            <option value="Red Soil">Red Soil</option>
+                            <option value="Vizianagaram">Vizianagaram</option>
                         </select>
                     </div>
                     <div className="grid grid-cols-2">
@@ -135,7 +150,7 @@ function Todoform({ fetchTasks }: { fetchTasks: () => void }) {
                             rows={3}
                             cols={20}
                             name='description'
-                            placeholder='address...'
+                            placeholder='village/mandal/district'
                             className="border-2"
                             onChange={handleChange}
                             value={data.description}

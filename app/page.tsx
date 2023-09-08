@@ -1,9 +1,12 @@
 "use client";
 import React, {useState } from 'react';
 import Tasks from "./components/Tasks";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Todoform from "./components/Todoform";
 interface Task {
   _id: string;
+  serve:number;
   title: string;
   description: string;
   status: number;
@@ -26,9 +29,10 @@ export default function Home() {
     }
 }
   return (
-    <div className="w-full font-sans text-lg flex justify-start flex-col md:flex-row">
+    <div >
       <Todoform fetchTasks={fetchTasks} />
       <Tasks tasks={tasks} fetchTasks={fetchTasks} />
+      <ToastContainer />
     </div>
   )
 }

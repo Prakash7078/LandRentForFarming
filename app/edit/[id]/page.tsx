@@ -8,7 +8,7 @@ function Editpage() {
   const params=useParams();
   const router = useRouter()
   const {id}=params;
-  const[editdata,setEditdata]=useState({ title: "", description: "", status: 0, landType:"",landSize:0,irrigation:false,price:0,date: new Date(),phone:0});
+  const[editdata,setEditdata]=useState({ title: "",serve:0,district:"", description: "", status: 0, landType:"",landSize:0,irrigation:false,price:0,date: new Date(),phone:0});
   useEffect(()=>{
     const fetchdata=async()=>{
       const response=await fetch(`/api/todos/${id}`);
@@ -17,6 +17,8 @@ function Editpage() {
         ...editdata,
         "title": data.todo.title,
         "description": data.todo.description,
+        "serve":data.todo.serve,
+        "district":data.todo.district,
         "landType":data.todo.landType,
         "landSize":data.todo.landSize,
         "irrigation":data.todo.irrigation,
@@ -94,6 +96,7 @@ function Editpage() {
                             value={editdata.price}
                         />
                     </div>
+                    
                     <div className="grid grid-cols-2">
                         <label className="font-bold">Phone</label>
                         <input
@@ -103,6 +106,17 @@ function Editpage() {
                             placeholder='mobile...'
                             onChange={handleChange}
                             value={editdata.phone}
+                        />
+                    </div>
+                    <div className="grid grid-cols-2">
+                        <label className="font-bold">Survey No</label>
+                        <input
+                            className="border-2"
+                            type='text'
+                            name='serve'
+                            placeholder='Serve Number...'
+                            onChange={handleChange}
+                            value={editdata.serve}
                         />
                     </div>
                     <div className="grid grid-cols-2">
