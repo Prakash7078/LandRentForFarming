@@ -88,16 +88,16 @@ export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks
     return (
         <div className='mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-auto'>
             {tasks.map((item: Task) => {
-                const line = complete === item._id ? 'bg-red-400' : '';
+                const line = complete === item._id ? 'bg-green-400' : '';
                 return (
-                    <div key={item._id} className={`flex gap-4 shadow-slate-500 shadow-inner p-3 flex-col  flex-wrap m-3 sm:m-10   ${line}`}>
+                    <div key={item._id} className={`flex gap-4 shadow-slate-500 shadow-inner p-3 flex-col  flex-wrap m-3 sm:m-10 bg-white  ${line}`}>
                         <h1 className='font-bold '>{item.title}</h1>
                         <p>{item.landSize} acres</p>
                         <p>{item.landType} Land</p>
                         <p>{item.price} /-</p>
                         <p>{item.irrigation ? "Irrigation":"No Irrigation"}</p>
                         <p>{new Date(item.date).toLocaleDateString()}</p>
-                        <p>+91 {item.phone}</p>                 
+                        <p className='font-bold '>+91 {item.phone}</p>                 
                         <p>{item.description}</p>
                         <div className='flex gap-3'>
                             <AiTwotoneEdit size={23} className="cursor-pointer" color="blue" onClick={()=>handleUpdate(item._id,item.serve)}/>
@@ -110,7 +110,7 @@ export default function Tasks({ tasks, fetchTasks }: { tasks: Task[], fetchTasks
                             min="0"
                             max="100"
                         />
-                        <span>Rating {item.status}</span>
+                        <span>Production {item.status}</span>
                     </div>
                 );
             })}

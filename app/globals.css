@@ -2,5 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 body{
-    background-color: blanchedalmond;
+    background-image: url("/land.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
